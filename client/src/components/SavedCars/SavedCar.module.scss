@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+
+.root {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 3% 0%;
+  background-color: $color-dark-grey;
+  .wrapper {
+    width: 90%;
+    display: grid;
+    place-items: flex-start;
+    .no_found {
+      color: $color-white;
+      text-align: center;
+      width: 40%;
+      justify-self: center;
+      background-color: $color-grey;
+      padding: 3%;
+      border-radius: 8px;
+    }
+  }
+}
