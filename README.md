@@ -58,9 +58,15 @@ To get a local copy up and running, follow these steps:
 
    cd server 
 
-   docker-compose up --build
+   npm install
+
+   npm run start
 
    cd client
 
-   docker-compose up --build
+   npm install
+
+   npm run dev
+
+  
 
