@@ -64,7 +64,7 @@ To get a local copy up and running, follow these steps:
 
    cd client
 
-   npm install
+   npm install --legacy-peer-deps
 
    npm run dev
 
