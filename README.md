@@ -52,7 +52,7 @@ To get a local copy up and running, follow these steps:
 
 **Clone the repository**:
    ```bash
-   git clone [https://github.com/your-username/autofinder.git](https://github.com/vladd4/autofinder.git)
+   git clone https://github.com/vladd4/autofinder.git
 
    cd autofinder
 
