@@ -32,6 +32,7 @@ class CarService {
       `
       SELECT
         c.id AS car_id,
+        c.ad_name,
         b.brand AS brand,
         m.model AS model,
         c.year,
@@ -43,9 +44,9 @@ class CarService {
         c.power,
         site.name AS site_name,
         site.photo_url AS site_photo_url,
-        state.state AS state,
         c.link,
-        type.type
+        type.type,
+        c.parsed_at
       FROM
         cars c
       LEFT JOIN brands b ON c.brand_id = b.id
@@ -54,7 +55,6 @@ class CarService {
       LEFT JOIN fuels f ON c.fuel_id = f.id
       LEFT JOIN types type ON c.type_id = type.id
       LEFT JOIN sites site ON c.site_id = site.id
-      LEFT JOIN state state ON c.state_id = state.id
       WHERE c.id = ?;`,
       [carID]
     );
@@ -123,7 +123,7 @@ class CarService {
     const carId = uuidv4();
 
     await db_pool.query(
-      "INSERT INTO cars VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO cars VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         carId,
         body.brand_id || null,
@@ -131,7 +131,6 @@ class CarService {
         body.year || null,
         body.price || null,
         body.mileage || null,
-        body.state_id || null,
         body.photo_url || null,
         body.type_id || null,
         body.gearbox_id || null,

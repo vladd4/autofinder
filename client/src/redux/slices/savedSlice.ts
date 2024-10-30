@@ -15,7 +15,6 @@ type Car = {
   power: string;
   site_name: string;
   site_photo_url: string;
-  state: string;
   link: string;
 };
 
@@ -34,7 +33,6 @@ type AddSavedItem = {
   min_power?: string;
   max_power?: string;
   gearbox_id?: number;
-  state_id?: number;
   telegram: boolean;
 };
 
@@ -47,7 +45,6 @@ type EditSaved = {
   min_year?: string;
   max_year?: string;
   gearbox_id?: number;
-  state_id?: number;
   userID: number;
 };
 
@@ -58,7 +55,6 @@ type SavedItem = {
   gearbox: string | null;
   fuel: string | null;
   type: string | null;
-  state: string | null;
   telegram: number;
   min_year: string | null;
   max_year: string | null;

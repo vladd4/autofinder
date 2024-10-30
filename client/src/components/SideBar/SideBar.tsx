@@ -31,7 +31,6 @@ type Filters = {
   brand?: string;
   model?: string;
   gearbox?: string;
-  state?: string;
   year?: {
     from: string;
     to: string;
@@ -78,7 +77,6 @@ export default function SideBar() {
   const [type, setType] = useState("type");
   const [model, setModel] = useState("model");
   const [gearbox, setGear] = useState("gear");
-  const [state, setState] = useState("state");
   const [year, setYear] = useState({
     from: "",
     to: "",
@@ -106,7 +104,6 @@ export default function SideBar() {
   const fuelOptions = useAppSelector((state) => state.filters.fuel);
   const typeOptions = useAppSelector((state) => state.filters.type);
   const gearOptions = useAppSelector((state) => state.filters.gear);
-  const stateOptions = useAppSelector((state) => state.filters.state);
 
   const showFilters = useAppSelector((state) => state.filters.showFilters);
 
@@ -127,9 +124,7 @@ export default function SideBar() {
     if (type !== "type") {
       filters.type = type;
     }
-    if (state !== "state") {
-      filters.state = state;
-    }
+
     if (year.from !== "" && year.to !== "") {
       filters.year = {
         from: year.from,
@@ -169,7 +164,6 @@ export default function SideBar() {
     setType("type");
     setModel("model");
     setGear("gear");
-    setState("state");
     setPrice({
       from: "",
       to: "",
@@ -189,7 +183,6 @@ export default function SideBar() {
     const selectedFuel = fuelOptions.find((option) => option.value === fuel);
     const selectedType = typeOptions.find((option) => option.value === type);
     const selectedGear = gearOptions.find((option) => option.value === gearbox);
-    const selectedState = stateOptions.find((option) => option.value === state);
 
     if (user) {
       const params: SavedItem = {
@@ -220,9 +213,7 @@ export default function SideBar() {
       if (selectedGear) {
         params.gearbox_id = selectedGear.id;
       }
-      if (selectedState) {
-        params.state_id = selectedState.id;
-      }
+
       dispatch(addToSaved(params));
       dispatch(setShowAlert(true));
       dispatch(setShowFilters(false));
@@ -283,13 +274,7 @@ export default function SideBar() {
               defaultValue="type"
               label="Тип кузову"
             />
-            <SelectInput
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              options={stateOptions}
-              defaultValue="state"
-              label="Стан"
-            />
+
             <SelectAccordion
               isOpen={isPowerOpen}
               onClick={() => togglerAccordion(setPowerOpen, isPowerOpen)}

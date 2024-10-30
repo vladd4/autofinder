@@ -4,7 +4,6 @@ import {
   getAllFuelQuery,
   getAllGearQuery,
   getAllModelsQuery,
-  getAllStateQuery,
   getAllTypeQuery,
 } from "../database/query_db.js";
 
@@ -26,11 +25,6 @@ class FilterService {
 
   async getGear() {
     const [rows] = await db_pool.query(getAllGearQuery);
-    return rows;
-  }
-
-  async getState() {
-    const [rows] = await db_pool.query(getAllStateQuery);
     return rows;
   }
 

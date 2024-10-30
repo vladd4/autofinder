@@ -19,10 +19,6 @@ router.get("/gear", async (req, res) => {
   const gears = await FilterService.getGear();
   res.json(gears);
 });
-router.get("/state", async (req, res) => {
-  const states = await FilterService.getState();
-  res.json(states);
-});
 router.get("/type", async (req, res) => {
   const states = await FilterService.getType();
   res.json(states);

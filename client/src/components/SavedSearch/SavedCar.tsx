@@ -27,7 +27,6 @@ type SavedCar = {
     gearbox: string | null;
     fuel: string | null;
     type: string | null;
-    state: string | null;
     telegram: number;
     min_year: string | null;
     max_year: string | null;
@@ -104,7 +103,6 @@ export default function SavedCar({ save }: SavedCar) {
       <td>{save.brand}</td>
       <td>{save.model}</td>
       <td>{save.gearbox}</td>
-      <td>{save.state}</td>
       <td>{save.fuel}</td>
       <td>{save.type}</td>
       <td>{save.min_year ? `${save.min_year} - ${save.max_year}` : ""}</td>

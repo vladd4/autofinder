@@ -21,13 +21,11 @@ const EditAlert: FC = () => {
   const fuelOptions = useAppSelector((state) => state.filters.fuel);
   const typeOptions = useAppSelector((state) => state.filters.type);
   const gearOptions = useAppSelector((state) => state.filters.gear);
-  const stateOptions = useAppSelector((state) => state.filters.state);
 
   const [brand, setBrand] = useState("");
   const [model, setModel] = useState("");
   const [gear, setGear] = useState("");
   const [fuel, setFuel] = useState("");
-  const [state, setState] = useState("");
   const [type, setType] = useState("");
   const [year, setYear] = useState({
     from: "",
@@ -65,13 +63,6 @@ const EditAlert: FC = () => {
         setGear(e.target.value),
     },
     {
-      label: "Стан",
-      options: stateOptions,
-      value: state,
-      changeHandler: (e: ChangeEvent<HTMLSelectElement>) =>
-        setState(e.target.value),
-    },
-    {
       label: "Паливо",
       options: fuelOptions,
       value: fuel,
@@ -98,16 +89,14 @@ const EditAlert: FC = () => {
       const selectedFuel = fuelOptions.find((option) => option.value === fuel);
       const selectedType = typeOptions.find((option) => option.value === type);
       const selectedGear = gearOptions.find((option) => option.value === gear);
-      const selectedState = stateOptions.find(
-        (option) => option.value === state
-      );
+
       const params = {
         brand_id: selectedBrand?.id,
         model_id: selectedModel?.id,
         type_id: selectedType?.id,
         fuel_id: selectedFuel?.id,
         gearbox_id: selectedGear?.id,
-        state_id: selectedState?.id,
+
         max_price: price.to,
         min_price: price.from,
         max_year: year.to,
@@ -125,7 +114,7 @@ const EditAlert: FC = () => {
       setFuel(editSaved.fuel!);
       setModel(editSaved.model!);
       setGear(editSaved.gearbox!);
-      setState(editSaved.state!);
+
       setType(editSaved.type!);
 
       setPrice({

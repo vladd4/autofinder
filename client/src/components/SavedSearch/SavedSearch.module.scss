@@ -64,6 +64,9 @@
         margin: 0;
         padding-bottom: 1%;
         font-weight: 500;
+        &:first-child {
+          width: 10%;
+        }
       }
       .telegram {
         display: flex;

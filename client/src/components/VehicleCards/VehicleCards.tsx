@@ -123,7 +123,7 @@ export default function VehicleCards() {
             <div className={styles.not_found}>Таких авто не знайдено!</div>
           )}
         </div>
-        {totalPage && totalPage >= 1 ? (
+        {totalPage && totalPage > 1 ? (
           <div className={styles.pagination}>
             {Array.from({ length: totalPage }, (_, index) => (
               <div

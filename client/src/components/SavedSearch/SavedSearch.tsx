@@ -4,7 +4,7 @@ import SavedCar from "./SavedCar";
 import SavedSkeleton from "../SavedSkeleton";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hook";
 import Button from "../ui/Buttons/Button";
-import { deleteSaved, resetSelected } from "@/redux/slices/savedSlice";
+import { resetSelected } from "@/redux/slices/savedSlice";
 import { setShowConfirmAlert } from "@/redux/slices/alertSlice";
 
 const headings = [
@@ -12,7 +12,6 @@ const headings = [
   "Марка",
   "Модель",
   "Коробка",
-  "Стан",
   "Паливо",
   "Тип кузову",
   "Рік",

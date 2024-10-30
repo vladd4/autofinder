@@ -1,6 +1,7 @@
 import { NextAuthOptions, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import axios from "axios";
+import { getSession } from "next-auth/react";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -9,12 +10,23 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET!,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET, // Ensure this is a non-public secret
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
     maxAge: 7200,
   },
+  pages: {
+    signIn: "/",
+  },
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      const session = await getSession();
+      if (session) {
+        return "/search";
+      }
+      return url;
+    },
+
     async signIn({ user }) {
       if (!user?.email) {
         throw new Error("No Profile");

@@ -24,7 +24,7 @@ class SavedSearchService {
     const id = uuidv4();
 
     const [rows] = await db_pool.query(
-      "INSERT INTO saved_searches VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO saved_searches VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         id,
         params.client_id,
@@ -34,7 +34,6 @@ class SavedSearchService {
         params.min_price || null,
         params.max_mileage || null,
         params.min_mileage || null,
-        params.state_id || null,
         params.min_year || null,
         params.max_year || null,
         params.type_id || null,
@@ -59,7 +58,7 @@ class SavedSearchService {
     const result = [];
 
     allCars.forEach((car) => {
-      if (CarService.allMatchV2(userSaved, car)) {
+      if (CarService.matchSavedSearch(userSaved, car)) {
         result.push(car);
       }
     });
@@ -83,7 +82,6 @@ class SavedSearchService {
         model_id = COALESCE(?, model_id),
         max_price = COALESCE(?, max_price),
         min_price = COALESCE(?, min_price),
-        state_id = COALESCE(?, state_id),
         min_year = COALESCE(?, min_year),
         max_year = COALESCE(?, max_year),
         type_id = COALESCE(?, type_id),
@@ -96,7 +94,6 @@ class SavedSearchService {
       params.model_id,
       params.max_price,
       params.min_price,
-      params.state_id,
       params.min_year,
       params.max_year,
       params.type_id,

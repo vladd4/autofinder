@@ -1,4 +1,4 @@
-import "@/styles/globals.scss";
+import "../styles/globals.scss";
 import { Montserrat } from "next/font/google";
 
 import ReduxProvider from "@/redux/Provider";
