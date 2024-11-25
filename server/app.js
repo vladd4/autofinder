@@ -8,6 +8,10 @@ import { router as filterRouter } from "./routes/filterRouter.js";
 import { router as userRouter } from "./routes/userRouter.js";
 import { router as savedRouter } from "./routes/savedRouter.js";
 
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerOptions from "./swaggerOptions.js";
+import swaggerUi from "swagger-ui-express";
+
 const app = express();
 
 dotenv.config();
@@ -27,6 +31,10 @@ const start = async () => {
     console.log(error);
   }
 };
+
+const swaggerDocs = swaggerJSDoc(swaggerOptions);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use("/api/v1/cars", carRouter);
 

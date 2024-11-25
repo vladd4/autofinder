@@ -6,7 +6,10 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "test": "set NODE_OPTIONS=--experimental-vm-modules && jest",
+    "test:watch": "set NODE_OPTIONS=--experimental-vm-modules && jest --watch",
+    "test:coverage": "set NODE_OPTIONS=--experimental-vm-modules && jest --coverage"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +28,8 @@
     "express-async-errors": "^3.1.1",
     "mysql2": "^3.6.3",
     "node-telegram-bot-api": "^0.65.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "uuid": "^10.0.0"
   }
 }
