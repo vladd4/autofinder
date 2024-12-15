@@ -4,39 +4,47 @@ services:
   db:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: ''  
-      MYSQL_DATABASE: five  
-      MYSQL_USER: root  
-      MYSQL_PASSWORD: ''  
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: five
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     volumes:
-      - mysql-data:/var/lib/mysql  
+      - mysql-data:/var/lib/mysql
     ports:
-      - "3306:3306"  
+      - "3306:3306"  # Exposing MySQL to host on port 3307 (this is optional)
 
   frontend:
     environment:
       NODE_ENV: production
     build:
-      context: ./client  
+      context: ./client
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"  
+      - "3000:3000"
     depends_on:
       - backend
 
   backend:
     env_file:
-      - ./server/.env 
+      - ./server/.env  # Ensure this file exists and has the correct environment variables
     build:
-      context: ./server  
-      dockerfile: Dockerfile  
+      context: ./server
+      dockerfile: Dockerfile
     environment:
-      - MYSQL_HOST=db  
+      - MYSQL_HOST=db  # Refers to the db service
       - MYSQL_USER=root
-      - MYSQL_PASSWORD=''  
+      - MYSQL_PASSWORD=root
       - MYSQL_DATABASE=five
     ports:
-      - "5000:5000" 
+      - "5000:5000"
+    depends_on:
+      - db
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
     depends_on:
       - db
 
