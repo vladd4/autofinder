@@ -9,7 +9,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
 // @ts-ignore
-import ReactHtmlParser from "react-html-parser";
+import parse from "html-react-parser";
 
 import Car from "@/../public/porsche-main-image.png";
 import Tg from "@/../public/telegram-icon.png";
@@ -52,7 +52,7 @@ export default function Slider() {
           <SplideSlide id="slide" key={slide.id}>
             <article className={styles.article}>
               <div className={styles.text_block}>
-                <h3>{ReactHtmlParser(slide.title)}</h3>
+                <h3>{parse(slide.title)}</h3>
                 <p>
                   {slide.paragraph}
                   <Image alt="Telegram" src={Tg} width={128} height={70} />
