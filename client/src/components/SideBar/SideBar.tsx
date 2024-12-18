@@ -13,7 +13,6 @@ import {
   fetchFuel,
   fetchGear,
   fetchModels,
-  fetchState,
   fetchType,
   setShowFilters,
 } from "../../redux/slices/filtersSlice";
@@ -58,7 +57,6 @@ type SavedItem = {
   min_year?: string;
   max_year?: string;
   gearbox_id?: number;
-  state_id?: number;
   telegram: boolean;
 };
 
@@ -223,7 +221,6 @@ export default function SideBar() {
     dispatch(fetchBrands());
     dispatch(fetchGear());
     dispatch(fetchFuel());
-    dispatch(fetchState());
     dispatch(fetchType());
   }, []);
   return (

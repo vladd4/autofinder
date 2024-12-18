@@ -12,7 +12,6 @@ type Filters = {
   fuel: TValue[];
   type: TValue[];
   gear: TValue[];
-  state: TValue[];
 };
 
 interface FiltersSlice extends Filters {
@@ -63,16 +62,6 @@ export const fetchGear = createAsyncThunk<TValue[]>(
   }
 );
 
-export const fetchState = createAsyncThunk<TValue[]>(
-  "filters/fetchState",
-  async () => {
-    const data = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_API}/filters/state`
-    );
-    return data.data;
-  }
-);
-
 export const fetchType = createAsyncThunk<TValue[]>(
   "filters/fetchType",
   async () => {
@@ -89,7 +78,6 @@ const initialState: FiltersSlice = {
   fuel: [],
   type: [],
   gear: [],
-  state: [],
   status: "loading",
   showFilters: false,
 };
@@ -152,18 +140,7 @@ export const filtersSlice = createSlice({
         state.gear = [];
         state.status = "loading";
       })
-      .addCase(fetchState.pending, (state) => {
-        state.state = [];
-        state.status = "loading";
-      })
-      .addCase(fetchState.fulfilled, (state, action) => {
-        state.state = action.payload;
-        state.status = "loaded";
-      })
-      .addCase(fetchState.rejected, (state) => {
-        state.state = [];
-        state.status = "loading";
-      })
+
       .addCase(fetchType.pending, (state) => {
         state.type = [];
         state.status = "loading";
