@@ -65,9 +65,10 @@ services:
       - ./nginx:/etc/nginx/conf.d
       - nginx-data:/var/www/certbot
       - certbot-etc:/etc/letsencrypt
-      - ~/dhparam.pem:/etc/nginx/dhparam.pem
+      - /home/ubuntu/playtrade/nginx/dhparam.pem:/etc/nginx/dhparam.pem:rw
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
      - backend
 
