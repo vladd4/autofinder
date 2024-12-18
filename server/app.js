@@ -34,7 +34,7 @@ const start = async () => {
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use("/api/v1/cars", carRouter);
 
