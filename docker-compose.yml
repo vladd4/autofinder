@@ -19,15 +19,23 @@ services:
       retries: 5
 
   frontend:
+    container_name: frontend
     build:
       context: ./client
       dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
     ports:
       - "3000:3000"
+    expose:
+      - "3000"
     depends_on:
       - backend
 
   backend:
+    container_name: backend
+    env_file:
+        - ./server/.env
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -38,6 +46,8 @@ services:
       MYSQL_DATABASE: five
     ports:
       - "5000:5000"
+    expose:
+      - "5000"
     depends_on:
       - db
 
@@ -49,5 +59,26 @@ services:
     depends_on:
       - db
 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - nginx-data:/var/www/certbot
+      - certbot-etc:/etc/letsencrypt
+      - ~/dhparam.pem:/etc/nginx/dhparam.pem
+    ports:
+      - "80:80"
+    depends_on:
+     - backend
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - nginx-data:/var/www/certbot
+
+
 volumes:
   mysql-data:
+  nginx-data:
+  certbot-etc:
