@@ -100,7 +100,7 @@ export default function VehicleCards() {
                 <CarSkeleton key={index} />
               );
             })
-          ) : cars && cars.length > 1 ? (
+          ) : cars && cars.length >= 1 ? (
             cars.map((car) => {
               const carName = `${car.brand} ${car.model}`;
               return (

@@ -42,9 +42,7 @@ export default function SavedSearch() {
               ))
             ) : savedSlice.status === "loading" ? (
               <tr>
-                <td colSpan={headings.length}>
-                  <SavedSkeleton />
-                </td>
+                <td colSpan={headings.length}></td>
               </tr>
             ) : (
               <tr>

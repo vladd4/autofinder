@@ -33,7 +33,7 @@ export default function ProfilePage() {
     <section className={styles.root}>
       <article className={styles.wrapper}>
         <article className={styles.dynamic_block}>
-          {user ? <ProfileInfo user={user} /> : <ProfileSkeleton />}
+          {user ? <ProfileInfo user={user} /> : null}
           {user && <ProfileSide user={user} />}
         </article>
         <SavedSearch />
